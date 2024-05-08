@@ -4,16 +4,17 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import Card from "../cards/Card";
 import ROUTES from "../../app/routes";
 // import quiz selector
+import { selectQuizzesAll } from "./quizzesSlice.js";
 
 export default function Quiz() {
-  const quizzes = {}; // replace this with a call to your selector to get all the quizzes in state
+  // const quizzes = {}; // replace this with a call to your selector to get all the quizzes in state
+  const quizzes = useSelector(selectQuizzesAll);
   const { quizId } = useParams();
   const quiz = quizzes[quizId];
 
-  if(!quiz) {
-    return <Navigate to={ROUTES.quizzesRoute()} replace/>
+  if (!quiz) {
+    return <Navigate to={ROUTES.quizzesRoute()} replace />;
   }
-
 
   return (
     <section>
